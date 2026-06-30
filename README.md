@@ -7,6 +7,9 @@ The app includes a timed quiz system, score tracking, and a coin reward mechanis
 
 ---
 
+## Project Structure
+
+```text
 com.example.greetingcard
 │
 ├── backend
@@ -31,6 +34,7 @@ com.example.greetingcard
 │   ├── GameTheme.kt
 │   ├── Color.kt
 │   ├── Type.kt
+```
 
 ---
 ## Project Overview
