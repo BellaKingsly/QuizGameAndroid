@@ -1,99 +1,145 @@
+/*
+ Date: Date: 02/07/2026
+ Name: Bella
+ File Path: ui/GameApp
+ Function: Main navigation controller of the app. Manages screens,
+           game state, API data loading, and overall quiz flow.
+*/
+
 package com.example.greetingcard.ui
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.*
-import com.example.greetingcard.backend.QuizRepository
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import com.example.greetingcard.backend.ApiClient
+import com.example.greetingcard.backend.QuizQuestionDto
 import com.example.greetingcard.ui.screens.*
 
 @Composable
 fun GameApp() {
 
-    // Current page state
+    // Current screen state (controls navigation)
     var screen by remember { mutableStateOf("splash") }
 
-    // global game results
+    // Last completed game results (used on home screen)
+    var lastScore by remember { mutableIntStateOf(0) }
+    var lastCoins by remember { mutableIntStateOf(0) }
+
+    // Current active game results
     var score by remember { mutableIntStateOf(0) }
     var coins by remember { mutableIntStateOf(0) }
 
-    // answer history (for review screen)
+    // User answer history (-1 = timeout or no answer)
     var history by remember {
         mutableStateOf<List<Int>>(emptyList())
     }
-    // load questions once
-    val questions = remember {
-        QuizRepository.getQuestions()
+
+    // Quiz questions loaded from backend API
+    var questions by remember {
+        mutableStateOf<List<QuizQuestionDto>>(emptyList())
     }
-    // reset all game data
+
+    // Loading state for API request
+    var loading by remember { mutableStateOf(true) }
+
+    // Fetch questions from Spring Boot backend
+    LaunchedEffect(Unit) {
+        try {
+            questions = ApiClient.api.getQuestions()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            loading = false
+        }
+    }
+
+    // Reset game state (score, coins, history)
     fun resetGame() {
         score = 0
         coins = 0
         history = emptyList()
     }
-    // Add trigger
+
+    // Used to force restart BattleScreen recomposition
     var restartKey by remember { mutableIntStateOf(0) }
 
+    // Screen navigation logic
     when (screen) {
-        // splash screen
+
+        // Splash screen (app startup)
         "splash" -> SplashScreen {
             screen = "home"
         }
-        // home screen
+
+        // Home screen (main menu)
         "home" -> HomeScreen(
-            finalScore = score,
-            coins = coins,
+            finalScore = lastScore,
+            coins = lastCoins,
             onStartQuiz = {
-                resetGame()
                 screen = "quiz"
             }
         )
-        // quiz game screen
-//        "quiz" -> BattleScreen(
-//            questions = questions,
-//
-//            onFinish = { s, c, h ->
-//                score = s
-//                coins = c
-//                history = h
-//                screen = "result"
-//            },
-//
-//            onQuit = {
-//                screen = "home"
-//            },
-//            // restart FIX (FULL RESET)
-//            onRestart = {
-//                resetGame()       // clear score + coins + history
-//                screen = "quiz"
-//            }
-//        )
-        "quiz" -> key(restartKey) {
-            BattleScreen(
-                questions = questions,
 
-                onFinish = { s, c, h ->
-                    score = s
-                    coins = c
-                    history = h
-                    screen = "result"
-                },
+        // Quiz gameplay screen
+        "quiz" -> {
 
-                onQuit = {
-                    screen = "home"
-                },
+            // Show loading spinner while fetching data
+            if (loading) {
 
-                onRestart = {
-                    score = 0
-                    coins = 0
-                    history = emptyList()
-                    restartKey++   // reload screen
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
                 }
-            )
+
+            } else {
+
+                // Force recompose BattleScreen when restarting
+                key(restartKey) {
+
+                    BattleScreen(
+                        questions = questions,
+
+                        // Called when quiz ends normally
+                        onFinish = { s, c, h ->
+
+                            lastScore = s
+                            lastCoins = c
+
+                            score = s
+                            coins = c
+                            history = h
+
+                            screen = "result"
+                        },
+
+                        // Quit quiz and return home
+                        onQuit = {
+                            screen = "home"
+                        },
+
+                        // Restart quiz (reset state and force reload screen)
+                        onRestart = {
+                            resetGame()
+                            restartKey++
+                        }
+                    )
+                }
+            }
         }
-        // result screen
+
+        // Result screen after finishing quiz
         "result" -> ResultScreen(
             finalScore = score,
             coins = coins,
 
             onRestart = {
+                resetGame()
+                restartKey++
                 screen = "quiz"
             },
 
@@ -105,7 +151,8 @@ fun GameApp() {
                 screen = "home"
             }
         )
-        // ⭐ THIS IS THE PART YOU MISSED
+
+        // History screen (not actively used in flow but available)
         "history" -> HistoryScreen(
             questions = questions,
             answers = history,
@@ -116,10 +163,12 @@ fun GameApp() {
 
             onRestart = {
                 resetGame()
+                restartKey++
                 screen = "quiz"
             }
         )
-        // review screen
+
+        // Review screen (detailed answer explanation)
         "review" -> ReviewScreen(
             questions = questions,
             history = history,

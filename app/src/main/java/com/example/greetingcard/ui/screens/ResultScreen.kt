@@ -1,3 +1,11 @@
+/*
+ Date: Date: 27/06/2026
+ Name: Bella
+ File Path: ui/screens/ResultScreen
+ Function: Displays final quiz result including score, coins earned,
+           performance message, and navigation options (restart, review, home).
+*/
+
 package com.example.greetingcard.ui.screens
 
 import androidx.compose.foundation.Image
@@ -15,24 +23,25 @@ import com.example.greetingcard.ui.components.GameCard
 
 @Composable
 fun ResultScreen(
-    finalScore: Int,
-    coins: Int,
+    finalScore: Int,     // Final score achieved by the user
+    coins: Int,          // Coins earned in the game
 
-    onRestart: () -> Unit,
-    onReview: () -> Unit,
-    onHome: () -> Unit
+    onRestart: () -> Unit, // Restart quiz game
+    onReview: () -> Unit,   // Navigate to answer review screen
+    onHome: () -> Unit      // Return to home screen
 ) {
 
-    // Game result message based on score
+    // Dynamic result message based on final score
     val message = when {
         finalScore < 50 -> "Mission Failed! Keep practicing and try again."
         finalScore < 70 -> "Great Job! Keep Going!"
         else -> "Amazing! You Are a Cyber Hero!"
     }
 
+    // Root container
     Box(modifier = Modifier.fillMaxSize()) {
 
-        // Background image
+        // Background image for result screen
         Image(
             painter = painterResource(R.drawable.background),
             contentDescription = null,
@@ -40,6 +49,7 @@ fun ResultScreen(
             contentScale = ContentScale.Crop
         )
 
+        // Main content layout
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -56,19 +66,19 @@ fun ResultScreen(
 
             Spacer(modifier = Modifier.height(30.dp))
 
-            // Result card UI
+            // Result information card
             GameCard {
 
-                // Final score (important result)
+                // Final score display
                 Text(
                     text = "Final Score: $finalScore",
                     style = MaterialTheme.typography.titleLarge,
-                    color = Color(0xFF4CAF50) // green highlight
+                    color = Color(0xFF4CAF50) // green highlight for score
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Success message
+                // Success label
                 Text(
                     text = "Congratulations!",
                     style = MaterialTheme.typography.titleMedium
@@ -76,7 +86,7 @@ fun ResultScreen(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Coins earned
+                // Coins reward display
                 Text(
                     text = "You earned 💰 $coins Coins",
                     color = Color(0xFFFF8A00) // orange reward color
@@ -84,7 +94,7 @@ fun ResultScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Score feedback message
+                // Performance feedback message
                 Text(
                     text = message,
                     style = MaterialTheme.typography.bodyLarge
@@ -93,7 +103,7 @@ fun ResultScreen(
 
             Spacer(modifier = Modifier.height(30.dp))
 
-            // Restart button
+            // Restart game button
             Button(
                 onClick = onRestart,
                 modifier = Modifier.fillMaxWidth()
@@ -103,7 +113,7 @@ fun ResultScreen(
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            // Review button
+            // Review answers button
             Button(
                 onClick = onReview,
                 modifier = Modifier.fillMaxWidth()
@@ -113,13 +123,13 @@ fun ResultScreen(
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            // Home button (GREEN BUTTON)
+            // Return to home button (highlighted green style)
             Button(
                 onClick = onHome,
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF4CAF50), // green background
-                    contentColor = Color.White          // white text
+                    containerColor = Color(0xFF4CAF50),
+                    contentColor = Color.White
                 )
             ) {
                 Text("Home")

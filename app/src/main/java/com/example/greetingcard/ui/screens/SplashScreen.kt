@@ -1,3 +1,11 @@
+/*
+ Date: Date: 25/06/2026
+ Name: Bella
+ File Path: ui/screens/SplashScreen
+ Function: Splash screen that shows app title and loading indicator,
+           then automatically navigates to the next screen after a delay.
+*/
+
 package com.example.greetingcard.ui.screens
 
 import androidx.compose.foundation.Image
@@ -14,21 +22,25 @@ import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun SplashScreen(
-    onFinish: () -> Unit
+    onFinish: () -> Unit // Callback triggered when splash screen ends
 ) {
 
-    // Auto navigate after 2.5 seconds
+    // Automatically navigate after a fixed delay
     LaunchedEffect(Unit) {
-//        delay(2500)
+
+        // Wait for 2.5 seconds before navigating
         delay(2.5.seconds)
+
+        // Trigger navigation to next screen
         onFinish()
     }
 
+    // Root container
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
 
-        // Background image (FULL SCREEN)
+        // Background image (full screen)
         Image(
             painter = painterResource(R.drawable.background),
             contentDescription = null,
@@ -36,15 +48,16 @@ fun SplashScreen(
             contentScale = ContentScale.Crop
         )
 
-        // Foreground content
+        // Foreground UI content
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(24.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            verticalArrangement = Arrangement.Center,       // Center vertically
+            horizontalAlignment = Alignment.CenterHorizontally // Center horizontally
         ) {
 
+            // App title text
             Text(
                 "Cyber Quiz Hero",
                 style = MaterialTheme.typography.headlineLarge,
@@ -53,6 +66,7 @@ fun SplashScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
+            // Loading indicator
             CircularProgressIndicator(
                 color = MaterialTheme.colorScheme.onPrimary
             )
