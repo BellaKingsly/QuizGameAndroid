@@ -1,5 +1,5 @@
 /*
- Date: Date: 27/06/2026
+ Date: 27/06/2026
  Name: Bella
  File Path: ui/screens/ResultScreen
  Function: Displays final quiz result including score, coins earned,

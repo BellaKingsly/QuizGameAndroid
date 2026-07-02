@@ -1,5 +1,5 @@
 /* Kotlin
- Date: Date: 02/07/2026
+ Date: 02/07/2026
  Name: Bella
  File Path: ui/screens/BattleScreen
  Function: Main quiz battle screen that handles question display, timer,

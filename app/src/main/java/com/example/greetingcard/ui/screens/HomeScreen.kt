@@ -1,5 +1,5 @@
 /*
- Date: Date: 30/06/2026
+ Date: 30/06/2026
  Name: Bella
  File Path: ui/screens/HomeScreen
  Function: Main entry screen of the app. Displays title, last score,

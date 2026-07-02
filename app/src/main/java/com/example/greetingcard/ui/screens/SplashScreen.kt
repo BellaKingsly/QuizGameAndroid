@@ -1,5 +1,5 @@
 /*
- Date: Date: 25/06/2026
+ Date: 25/06/2026
  Name: Bella
  File Path: ui/screens/SplashScreen
  Function: Splash screen that shows app title and loading indicator,

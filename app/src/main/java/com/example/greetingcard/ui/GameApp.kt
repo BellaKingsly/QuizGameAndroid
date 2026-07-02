@@ -1,5 +1,5 @@
 /*
- Date: Date: 02/07/2026
+ Date: 02/07/2026
  Name: Bella
  File Path: ui/GameApp
  Function: Main navigation controller of the app. Manages screens,
