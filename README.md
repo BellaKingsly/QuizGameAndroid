@@ -12,33 +12,74 @@ The app includes a timed quiz system, score tracking, and a coin reward mechanis
 - Android Studio: Kotlin + Java Spring Boot (backend API development) + MySQL (database) + DBeaver (database management tool)
 
 ```text
-com.example.greetingcard
+QuizGameAndroid/
 │
-├── backend
-│   ├── ApiClient.kt
-│   ├── ApiConfig.kt
-│   ├── ApiService.kt
-│   ├── QuizQuestionDto.kt
+├── android/   (Android Frontend - Kotlin)
+│   └── com.example.greetingcard/
+│       │
+│       ├── backend/
+│       │   ├── ApiClient.kt
+│       │   ├── ApiConfig.kt
+│       │   ├── ApiService.kt
+│       │   └── QuizQuestionDto.kt
+│       │
+│       ├── ui/
+│       │   ├── GameApp.kt
+│       │   │
+│       │   ├── screens/
+│       │   │   ├── BattleScreen.kt
+│       │   │   ├── HistoryScreen.kt
+│       │   │   ├── HomeScreen.kt
+│       │   │   ├── ResultScreen.kt
+│       │   │   ├── ReviewScreen.kt
+│       │   │   └── SplashScreen.kt
+│       │   │
+│       │   └── components/
+│       │       ├── GameButton.kt
+│       │       └── GameCard.kt
+│       │
+│       └── ui.theme/
+│           ├── GameTheme.kt
+│           ├── Color.kt
+│           └── Type.kt
 │
-├── ui
-│   ├── GameApp.kt
-│   │
-│   ├── screens
-│   │     ├── BattleScreen.kt
-│   │     ├── HistoryScreen.kt
-│   │     ├── HomeScreen.kt
-│   │     ├── ResultScreen.kt
-│   │     ├── ReviewScreen.kt
-│   │     ├── SplashScreen.kt
-│   │
-│   ├── components
-│         ├── GameButton.kt
-│         ├── GameCard.kt
 │
-├── ui.theme
-│   ├── GameTheme.kt
-│   ├── Color.kt
-│   ├── Type.kt
+├── backend/   (Spring Boot Backend - Java)
+│   └── quiz-backend/
+│       │
+│       ├── src/
+│       │   └── main/
+│       │       ├── java/
+│       │       │   └── com.example.quiz_backend/
+│       │       │       │
+│       │       │       ├── config/
+│       │       │       │   └── CorsConfig.java
+│       │       │       │
+│       │       │       ├── controller/
+│       │       │       │   └── QuizController.java
+│       │       │       │
+│       │       │       ├── dto/
+│       │       │       │   └── QuizQuestionDTO.java
+│       │       │       │
+│       │       │       ├── entity/
+│       │       │       │   └── QuizQuestionEntity.java
+│       │       │       │
+│       │       │       ├── repository/
+│       │       │       │   └── QuizRepository.java
+│       │       │       │
+│       │       │       ├── service/
+│       │       │       │   └── QuizService.java
+│       │       │       │
+│       │       │       └── QuizBackendApplication.java
+│       │       │
+│       │       └── resources/
+│       │
+│       ├── test/
+│       ├── HELP.md
+│       ├── mvnw
+│       └── mvnw.cmd
+│
+└── README.md
 ```
 
 ---
