@@ -3,8 +3,8 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile name="Annotation profile for quiz-backend" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <sourceOutputDir name="../Backend/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../Backend/target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
