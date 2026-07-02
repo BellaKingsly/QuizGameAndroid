@@ -13,18 +13,21 @@ The app includes a timed quiz system, score tracking, and a coin reward mechanis
 com.example.greetingcard
 │
 ├── backend
-│   ├── QuizQuestion.kt
-│   ├── QuizRepository.kt
+│   ├── ApiClient.kt
+│   ├── ApiConfig.kt
+│   ├── ApiService.kt
+│   ├── QuizQuestionDto.kt
 │
 ├── ui
 │   ├── GameApp.kt
 │   │
 │   ├── screens
-│   │     ├── SplashScreen.kt
+│   │     ├── BattleScreen.kt
+│   │     ├── HistoryScreen.kt
 │   │     ├── HomeScreen.kt
-│   │     ├── QuizScreen.kt
 │   │     ├── ResultScreen.kt
 │   │     ├── ReviewScreen.kt
+│   │     ├── SplashScreen.kt
 │   │
 │   ├── components
 │         ├── GameButton.kt
