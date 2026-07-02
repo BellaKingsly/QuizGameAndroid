@@ -40,6 +40,7 @@ com.example.greetingcard
 ```
 
 ---
+
 ## Project Overview
 
 This project is a single-player quiz game where users answer multiple-choice questions under a time limit.  
@@ -59,172 +60,56 @@ The application is structured using a screen-based navigation system controlled 
 
 ---
 
-## Game Flow
+## Tech Stack
 
-The application follows this flow:
-
-Splash Screen → Home Screen → Quiz Screen → Result Screen → Review Screen
-
----
-
-## Screens Description
-
-### 1. Splash Screen
-
-**File:** `SplashScreen.kt`
-
-Purpose:
-- Displays a loading screen when the app starts
-- Shows the game title and logo image
-- Waits for a few seconds before entering the Home Screen
-
-Functionality:
-- Automatically navigates to Home Screen after delay
-- Used as an introduction screen for the game
+- Kotlin  
+- Jetpack Compose  
+- Material 3  
+- Coroutines (used for countdown timer)  
+- State management using Compose `remember`  
+- Java Spring Boot (backend API development)  
+- MySQL (database)  
+- DBeaver (database management tool)
 
 ---
 
-### 2. Home Screen
+## Backend Architecture
 
-**File:** `HomeScreen.kt`
+The backend of **Cyber Quiz Arena** is built using **Java Spring Boot**, which provides RESTful APIs for handling quiz-related data and game logic.
 
-Purpose:
-- Main entry screen of the game
+It is responsible for:
 
-Functionality:
-- Displays last game score
-- Displays total coins earned
-- Provides button to start a new quiz
-- Provides button to view answer history (Review Screen)
+- Fetching quiz questions from the database  
+- Managing Quiz Data Transfer Objects (DTOs)  
+- Processing frontend requests during gameplay  
+- Providing structured and scalable REST API endpoints  
 
-User actions:
-- Start Quiz → enters Quiz Screen
-- View History → enters Review Screen
+This design allows clear separation between frontend (Android app) and backend services.
 
 ---
 
-### 3. Quiz Screen
+## Database
 
-**File:** `QuizScreen.kt`
+The project uses **MySQL** as the main relational database to store all quiz-related data, including questions, multiple-choice options, correct answers, and explanations.
 
-Purpose:
-- Main gameplay screen
+A database management tool (**DBeaver**) is used to:
 
-Functionality:
-- Displays quiz questions one by one
-- Each question has 4 multiple-choice options
-- Includes a 20-second countdown timer per question
-- Tracks score and coins in real time
-- Stores user answers for later review
-
-Game rules:
-- Correct answer: +10 score, +100 coins
-- Wrong answer: no reward
-- Timeout: auto skip to next question
-
-End condition:
-- After 10 questions, game automatically navigates to Result Screen
+- Visualize database structure  
+- Execute SQL queries  
+- Manage and test data during development  
+- Debug and verify backend data consistency  
 
 ---
 
-### 4. Result Screen
+## System Overview
 
-**File:** `ResultScreen.kt`
+Cyber Quiz Arena follows a **client-server architecture**:
 
-Purpose:
-- Displays final game results after completing all questions
+- **Frontend:** Android app built with Jetpack Compose  
+- **Backend:** Java Spring Boot REST API  
+- **Database:** MySQL managed with DBeaver  
 
-Functionality:
-- Shows final score
-- Shows total coins earned
-- Provides option to restart the quiz
-- Provides option to return to Home Screen
-
-User actions:
-- Play Again → restart quiz
-- Home → return to main screen
-
----
-
-### 5. Review Screen
-
-**File:** `ReviewScreen.kt`
-
-Purpose:
-- Allows users to review all answered questions
-
-Functionality:
-- Displays all quiz questions
-- Shows user selected answers
-- Shows correct answers for comparison
-
-User actions:
-- Back button returns to Home Screen
-
----
-
-## Backend Logic
-
-### Quiz Repository
-
-**File:** `QuizRepository.kt`
-
-Purpose:
-- Stores all quiz questions used in the game
-
-Contains:
-- Question text
-- Multiple choice options
-- Correct answer index
-- Explanation for each answer
-
----
-
-### Quiz Question Model
-
-**File:** `QuizQuestion.kt`
-
-Purpose:
-- Defines the data structure for quiz questions
-
-Fields:
-- id
-- question
-- options
-- answer
-- explanation
-
----
-
-## Game Rules
-
-- Each game contains 10 questions
-- Each question has a 20-second time limit
-- Correct answer gives:
-  - +10 score
-  - +100 coins
-- Wrong answer gives no reward
-- If time runs out, question is skipped automatically
-
----
-
-## UI Design
-
-- Simple game-style layout using Material 3
-- Warm theme colors (orange and green)
-- Clear feedback for correct and wrong answers
-- Focus on readability and interaction speed
-
----
-
-## Future Improvements
-
-- Add difficulty levels (Easy / Medium / Hard)
-- Add sound effects for correct and wrong answers
-- Add leaderboard system
-- Connect backend API for dynamic questions
-- Add animations for transitions between screens
-- Add user profile system
+The frontend communicates with the backend via HTTP requests to retrieve quiz data and submit gameplay results.
 
 ---
 
