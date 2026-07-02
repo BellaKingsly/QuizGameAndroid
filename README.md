@@ -1,7 +1,7 @@
-# Cyber Quiz Arena
+# Quiz Game App
 
-Cyber Quiz Arena is an Android quiz application built with Jetpack Compose.  
-It is designed as a simple game-style learning app focused on **cyber security** and **software development** topics.
+Quiz Game App is an Android quiz application built with Jetpack Compose.  
+It is designed as a simple game-style learning answering app focused on **cyber security** and **software development** topics.
 
 The app includes a timed quiz system, score tracking, and a coin reward mechanism to simulate game progression.
 
