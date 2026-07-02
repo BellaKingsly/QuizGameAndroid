@@ -121,3 +121,8 @@ The frontend communicates with the backend via HTTP requests to retrieve quiz da
 2. Sync Gradle files
 3. Run on emulator or physical Android device
 4. App starts from Splash Screen automatically
+
+---
+
+<img width="1536" height="1024" alt="ChatGPT Image Jul 2, 2026, 03_59_26 PM" src="https://github.com/user-attachments/assets/949e7fb4-a0fc-48a1-b64b-6d8b79358989" />
+
