@@ -7,7 +7,9 @@ The app includes a timed quiz system, score tracking, and a coin reward mechanis
 
 ---
 
-## Project Structure
+## Project Structure 
+
+- Android Studio: Kotlin + Java Spring Boot (backend API development) + MySQL (database) + DBeaver (database management tool)
 
 ```text
 com.example.greetingcard
@@ -75,7 +77,7 @@ The application is structured using a screen-based navigation system controlled 
 
 ## Backend Architecture
 
-The backend of **Cyber Quiz Arena** is built using **Java Spring Boot**, which provides RESTful APIs for handling quiz-related data and game logic.
+The backend of **Quiz Game Android App** is built using **Java Spring Boot**, which provides RESTful APIs for handling quiz-related data and game logic.
 
 It is responsible for:
 
@@ -103,7 +105,7 @@ A database management tool (**DBeaver**) is used to:
 
 ## System Overview
 
-Cyber Quiz Arena follows a **client-server architecture**:
+Quiz Game Android App follows a **client-server architecture**:
 
 - **Frontend:** Android app built with Jetpack Compose  
 - **Backend:** Java Spring Boot REST API  
