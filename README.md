@@ -165,5 +165,4 @@ The frontend communicates with the backend via HTTP requests to retrieve quiz da
 
 ---
 
-<img width="1536" height="1024" alt="ChatGPT Image Jul 2, 2026, 03_59_26 PM" src="https://github.com/user-attachments/assets/949e7fb4-a0fc-48a1-b64b-6d8b79358989" />
 
