@@ -43,6 +43,7 @@ QuizGameAndroid/
 │           ├── Color.kt
 │           └── Type.kt
 │
+├── WearOS
 │
 ├── backend/   (Spring Boot Backend - Java)
 │   └── quiz-backend/
